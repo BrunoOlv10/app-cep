@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Busca Cep
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content" id="buscarCep">
+
+    <ion-input
+    label="Digite seu Estado:"
+    fill="outline"
+    labelPlacement="floating"
+    placeholder="Digite seu estado (abreviado)"
+    [clearInput]="true"
+    [(ngModel)]="estado"
+    maxlength="2"
+    >
+    </ion-input>
+
+    <ion-input
+    label="Digite sua Cidade:"
+    fill="outline"
+    labelPlacement="floating"
+    placeholder="Digite sua cidade"
+    [clearInput]="true"
+    [(ngModel)]="cidade"
+    >
+    </ion-input>
+
+
+    <ion-input
+    label="Digite sua Rua:"
+    fill="outline"
+    labelPlacement="floating"
+    placeholder="Digite sua rua"
+    [clearInput]="true"
+    [(ngModel)]="rua"
+    >
+    </ion-input>
+
+    <div *ngIf="buscaRes" class="results">
+
+      <ion-card color="light" *ngFor="let dados of buscaRes">
+        <ion-card-header>
+          <ion-card-subtitle> {{dados.localidade}} - {{dados.uf}} </ion-card-subtitle>
+          <ion-card-title> {{dados.cep}} </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-label> Bairro: {{dados.bairro}} </ion-label>
+          <ion-label> Rua: {{dados.logradouro}} </ion-label>
+          <ion-label *ngIf=" dados.complemento !== '' ">
+            Complemento: {{dados.complemento}}
+          </ion-label>
+          <ion-label> DDD: {{dados.ddd}} </ion-label>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+    <ion-button color="warning" (click)="exibir()">Buscar</ion-button>
+
+    <ion-label class="voltar" routerLink="/home">Voltar</ion-label>
+  </div>
+
+</ion-content>

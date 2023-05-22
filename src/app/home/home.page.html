@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Buscador CEP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+
+    <ion-input
+    label="Digite seu CEP:"
+    fill="solid"
+    labelPlacement="floating"
+    placeholder="Digite seu CEP"
+    [clearInput]="true"
+    [(ngModel)]="cep"
+    >
+    </ion-input>
+
+    <div class="results">
+      <ion-card *ngIf="dadosCep">
+        <ion-card-header>
+          <ion-card-subtitle> {{dadosCep.cep}} </ion-card-subtitle>
+          <ion-card-title> {{dadosCep.localidade}} - {{dadosCep.uf}} </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-label> Bairro: {{dadosCep.bairro}} </ion-label>
+          <ion-label> Rua: {{dadosCep.logradouro}} </ion-label>
+          <ion-label *ngIf=" dadosCep.complemento !== '' ">
+            Complemento: {{dadosCep.complemento}}
+          </ion-label>
+          <ion-label> DDD: {{dadosCep.ddd}} </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ion-button color="warning" (click)="exibir()">Buscar</ion-button>
+
+    <div class="consulta-div">
+      <ion-label class="consulta-text" routerLink="/buscar-cep">Esqueceu ou não sabe o CEP? Ache aqui</ion-label>
+    </div>
+
+  </div>
+
+</ion-content>
